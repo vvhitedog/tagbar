@@ -3009,7 +3009,7 @@ function! s:GetFileWinnr(fileinfo) abort
         " in it. Similar to bufwinnr() but skips the previewwindow.
         for i in range(1, winnr('$'))
             call s:goto_win(i, 1)
-            if bufnr('%') == a:fileinfo.bufnr && !&previewwindow
+            if a:fileinfo.fpath =~ bufname('%') && !&previewwindow
                 let filewinnr = winnr()
                 break
             endif
